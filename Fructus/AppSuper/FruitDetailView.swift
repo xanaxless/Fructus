@@ -17,8 +17,7 @@ struct FruitDetailView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment:.center, spacing: 20){
                     // HEADER
-                    
-                    
+                    FruitHeaderView(fruit: fruit)
                     VStack(alignment: .leading, spacing: 20) {
                         // TITLE
                         Text(fruit.title)
@@ -32,6 +31,7 @@ struct FruitDetailView: View {
                             .multilineTextAlignment(.leading)
                         
                         // NUTIENTS
+                        FruitNutrientsView(fruit: fruit)
                         
                         
                         // SUBHEADLINE
@@ -44,13 +44,20 @@ struct FruitDetailView: View {
                             .multilineTextAlignment(.leading)
                             
                         //LINK
-                        
+                        SourceLinkView()
+                            .padding(.top, 10)
+                            .padding(.bottom, 40)
                     }//:VStack
                         .padding()
                         .frame(maxWidth: 640, alignment: .center)
                 }//: VStack
+                .navigationBarTitle(fruit.title, displayMode: .inline)
+                .navigationBarHidden(true)
+                
             }//: ScrollView
+            .edgesIgnoringSafeArea(.top)
         }//: NavigationView
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
